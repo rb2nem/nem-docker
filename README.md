@@ -1,7 +1,7 @@
 
 # Info
 
-A docker file to help you setup a nem NIS node, remote or local, with our without running the Nem Comunity Client.
+A docker file to help you setup a nem NIS node.
 
 # How to run
 
