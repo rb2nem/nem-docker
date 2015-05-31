@@ -18,4 +18,4 @@ do
     fi
 done
 
-/bin/bash
+tmux attach -t nem
