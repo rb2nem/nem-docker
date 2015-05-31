@@ -9,6 +9,7 @@ RUN curl http://bob.nem.ninja/nis-ncc-0.6.31.tgz.sig > nis-ncc-0.6.31.tgz.sig
 RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
 RUN gpg --verify nis-ncc-0.6.31.tgz.sig nis-ncc-0.6.31.tgz && tar zxf nis-ncc-0.6.31.tgz
 COPY ./start.sh /
+COPY ./config-user.properties /package/nis/
 # default arguments to entry point:
 CMD ["nis"]
 ENTRYPOINT ["/start.sh"]
