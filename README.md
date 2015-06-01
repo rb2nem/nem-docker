@@ -9,21 +9,29 @@ Of course you need docker installed.
 
 Clone this repository, get in the repo's directory.
 
+Then simply run:
 
-First build your image:
+    ./run.sh
+
+To stop the container, issue:
+
+    sudo docker stop mynis
+
+# Tweaking the config
+
+If you want to tweak the config, here some info.
+The run script checks if a file config-user.properties exists, and if it doesn't, it prompts the user for information.
+It then generates the file config-user.properties with a bootName and a bootKey. If you want to tweak the config of your 
+node, this is the file to edit.
+
+After that, the script builds and runs the image with these commands, naming the container mynis:
 
     sudo docker build -t mynis  .
-    
-Then run it:
-
-    sudo docker run -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 mynis
+    sudo docker run --name -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 mynis
 
 This will run NIS and make it available on port 7890 of your host.
 The blockchain is save in the nem directory, so this data is persisted across restarts of the container.
 
-To stop the container, just issue:
-
-    sudo docker stop
     
 # For development
 
@@ -34,7 +42,3 @@ You can pass arguments specifying what you want to run, the default being only N
 This will run NIS and NCC, making them available respectively on port 7890 and 8989 of your host.
 Do not do this if you don't master docker. Consider that when you stop the container, your storage and possibly newly created wallet is lost! You could loose your wallet, you've been warned!
 With this command you'll be dropped in a shell running inside the container. To stop the container, exit the shell.
-
-# Todo
-
-  * Make it run as a daemon. Now you get a shell prompt from the container.
