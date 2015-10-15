@@ -8,7 +8,6 @@ RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
 RUN gpg --verify nis-ncc-0.6.43.tgz.sig nis-ncc-0.6.43.tgz && tar zxf nis-ncc-0.6.43.tgz
 RUN mkdir -p /root/nem
 COPY ./container_scripts/supervisord.conf /etc/
-COPY ./config-user.properties /package/nis/
 EXPOSE 7890
 EXPOSE 8989
 CMD ["/usr/bin/supervisord"]
