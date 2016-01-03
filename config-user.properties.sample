@@ -1,0 +1,4 @@
+# Adapt the settings and rename this file to config-user.properties.
+# It will then be included in the container when you run the script run.sh.
+nis.bootKey = 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+nis.bootName = foobar
