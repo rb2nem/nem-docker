@@ -9,6 +9,8 @@ Of course you need docker installed.
 
 Clone this repository, get in the repo's directory.
 
+Depending on the way you have configured docker, you might need to run these commands as root (or equivalently prefixed by sudo).
+
 Then simply run:
 
     ./boot.sh

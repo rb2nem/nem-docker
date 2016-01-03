@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec mynem_container supervisorctl $@
+docker exec -it mynem_container supervisorctl $@
