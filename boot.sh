@@ -15,3 +15,24 @@ docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem -t -d
 
 
 
+if [[ "$*" =~ nis || $# == 0 ]]; then
+  echo "Starting NIS"
+  ./supervisorctl.sh start nis
+fi
+
+if [[ "$*" =~ ncc || $# == 0 ]]; then
+  echo -e "\e[32mStarting NCC, which will be available at http://localhost:8989\e[39m"
+  ./supervisorctl.sh start ncc
+fi
+
+echo "All done, here are the services running:"
+echo -e "\e[34m"
+./supervisorctl.sh status
+echo -e "\e[39m"
+echo
+echo -e "\e[32m--------------------------------------------------------------------------------"
+echo "You can control both services named 'ncc' and 'nis' with the script ./service.sh"
+echo "run ./service.sh without argument to get help"
+echo
+echo "You can access the supervisord control shell with ./supervisorctl.sh"
+echo -e "--------------------------------------------------------------------------------\e[39m"
