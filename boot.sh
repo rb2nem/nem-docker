@@ -10,7 +10,7 @@ set -eu
 # we rebuild and remove existing container every time. 
 # The benefits: upgrades are automatic after the git pull
 docker build -t mynem_image  .
-docker ps -a | grep mynem_container > /dev/null && sudo docker rm mynem_container
+docker ps -a | grep mynem_container > /dev/null && docker rm mynem_container
 docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 -p 8989:8989 mynem_image
 
 
@@ -20,7 +20,7 @@ if [[ "$*" =~ nis || $# == 0 ]]; then
   ./supervisorctl.sh start nis
 fi
 
-if [[ "$*" =~ ncc || $# == 0 ]]; then
+if [[ "$*" =~ ncc ]]; then
   echo -e "\e[32mStarting NCC, which will be available at http://localhost:8989\e[39m"
   ./supervisorctl.sh start ncc
 fi

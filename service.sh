@@ -9,6 +9,6 @@ fi
 ./supervisorctl.sh $@
 
 
-if [[ "$*" =~ ncc ]]; then
+if [[ "$*" =~ ncc && $1 == "start" ]]; then
   echo "You can access the NEM Community Client at http://localhost:8989/"
 fi
