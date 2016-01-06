@@ -9,7 +9,7 @@ set -eu
 
 # we rebuild and remove existing container every time. 
 # The benefits: upgrades are automatic after the git pull
-docker build -t mynem_image  .
+docker build --rm=false -t mynem_image  .
 docker ps -a | grep mynem_container > /dev/null && docker rm mynem_container
 docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 -p 8989:8989 mynem_image
 
