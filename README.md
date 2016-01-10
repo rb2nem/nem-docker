@@ -3,7 +3,9 @@
 
 A docker file to help you setup a nem NIS node and the NEM Community Client.
 
-[![asciicast](https://asciinema.org/a/ci461w7w50wyaj7dztwj1j4pa.png)](https://asciinema.org/a/ci461w7w50wyaj7dztwj1j4pa)
+Here is a screencast showing how to start NCC:
+
+![Imgur](http://i.imgur.com/ZBANMK4.gif?1)
 
 # How to run
 
