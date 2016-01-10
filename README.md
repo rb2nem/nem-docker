@@ -7,6 +7,8 @@ Here is a screencast showing how to start NCC:
 
 ![Imgur](http://i.imgur.com/ZBANMK4.gif?1)
 
+Note that the first time you build the docker container, it will take more time than shown in the screencast. Subsequent runs will build faster though.
+
 # How to run
 
 Of course you need docker installed.
