@@ -41,7 +41,8 @@ To stop the container, issue:
 
 # Controlling the processes in the container
 
-Services (NIS, NCC) running in the container are controlled with supervisord. You can easily control them with the script service.sh provided.
+Services (NIS, NCC) running in the container are controlled with supervisord. You can easily control them with the script service.sh provided. There is a [small screencast](http://i.imgur.com/Z6U619h.gifv) illustrating the following explanations.
+
 
 To check which services are running, issue the command:
 
