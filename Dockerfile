@@ -10,7 +10,7 @@ RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
 RUN gpg --verify nis-ncc-0.6.73.tgz.sig nis-ncc-0.6.73.tgz && tar zxf nis-ncc-0.6.73.tgz
 
 # servant
-RUN curl https://github.com/rb2nem/nem-servant/raw/master/servant.zip > servant.zip
+RUN curl -L https://github.com/rb2nem/nem-servant/raw/master/servant.zip > servant.zip
 RUN unzip servant.zip
 
 
