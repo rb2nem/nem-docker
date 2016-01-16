@@ -21,3 +21,4 @@ EXPOSE 8989
 CMD ["/usr/bin/supervisord"]
 # copying the user config file last for screencast speedup
 COPY ./config-user.properties /package/nis/
+COPY ./servant.config.properties /servant/config.properties

@@ -1,0 +1,19 @@
+# Common configuration
+# short server name
+nem.shortServerName = Servant
+
+# Specifies the maximum number of threads of the thread pool.
+nem.maxThreads = 100
+
+# protocol, ports, paths
+nem.protocol = http
+nem.host = <put vps ip address here>
+nem.httpPort = 7880
+nem.httpsPort = 7881
+nem.webContext = 
+nem.apiContext = 
+nem.homePath = 
+nem.shutdownPath = /shutdown
+
+# Servant key configuration
+servant.key = <put your NIS boot key here>
