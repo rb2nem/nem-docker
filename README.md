@@ -60,6 +60,10 @@ You can restart NIS in one command:
 
     ./service.sh restart nis
 
+## Servant
+
+To run servant in the docker, you have to copy `servant.config.properties.sample` to `servant.config.properties` and edit it *before* you boot. Then "./boot.sh", wait for nis to synchronize, then `./service.sh start servant`.
+
 # Importing a previously exported wallet
 
 Before you do this, be sure you have a backup of your wallet in a safe place! Things can go wrong, and you should not use this 
