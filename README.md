@@ -30,7 +30,7 @@ and to start both NIS and NCC, run:
     ./boot.sh nis ncc
 
 
-The first time you run it you will be prompted for a node name (required) and a boot key (optional, 
+The first time you run NIS you will be prompted for a node name (required) and a boot key (optional, 
 one will be generated if left empty).
 
 This will start the NIS/NCC process(es) in the docker container named mynem_container.
@@ -41,7 +41,7 @@ To stop the container, issue:
 
 # Controlling the processes in the container
 
-Services (NIS, NCC) running in the container are controlled with supervisord. You can easily control them with the script service.sh provided. There is a [small screencast](http://i.imgur.com/Z6U619h.gifv) illustrating the following explanations.
+Services (NIS, NCC, Servant) running in the container are controlled with supervisord. You can easily control them with the script service.sh provided. There is a [small screencast](http://i.imgur.com/Z6U619h.gifv) illustrating the following explanations.
 
 
 To check which services are running, issue the command:
@@ -62,7 +62,7 @@ You can restart NIS in one command:
 
 ## Servant
 
-To run servant in the docker, you have to copy `servant.config.properties.sample` to `servant.config.properties` and edit it *before* you boot. Then "./boot.sh", wait for nis to synchronize, then `./service.sh start servant`.
+To run servant in the docker, you have to copy `custom-configs/servant.config.properties.sample` to `custom-configs/servant.config.properties` and edit it *before* you boot. Then "./boot.sh", wait for nis to synchronize, then `./service.sh start servant`.
 
 # Importing a previously exported wallet
 
@@ -75,17 +75,27 @@ sufficient to have the wallet listed.
 
 # Tweaking the config
 
-If you want to tweak the config, here is some info.
-The boot.sh script checks if a file config-user.properties exists, and if it doesn't, it prompts the user for information.
-It then generates the file config-user.properties with a bootName and a bootKey. If you want to tweak the config of your 
-node, this is the file to edit.
+The `boot.sh` script checks if a file `custom-configs/config-user.properties`
+exists when running NIS, and if it doesn't, it prompts the user for
+information.  It then generates the file with a bootName and a bootKey. If you
+want to tweak the config of your node, this is the file to edit.
 
 After the config file generation, the script builds and runs the image with these commands, naming the container mynem_container:
 
     sudo docker build -t mynem_image  .
-    sudo docker run --name mynem_container -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 -p 8989:8989 mynem_image "$@"
+    sudo docker run --name mynem_container -v ${PWD}/nem:/root/nem $config_mounts -t -d  -p 7777:7777 -p 7880:7880 -p 7890:7890 -p 8989:8989 mynem_image "$@"
 
-This will run NIS (resp. NCC) and make it available on port 7890 (resp. 8989) of your host.
+This will run the container and make the necessary ports available on your host.
+`$config_mounts` passes the necessary arguments to use the custom config file located in `custom-configs`. Currently handled files are `supervisord.conf`, 'nis.config-user.properties` and `servant.config.properties`. Here is an example to customize the supervisor config. First copy the sample config file to get started, then edit it, eg to set some services as automatically started at boot. After that stop and boot the container and the new config is applied.
+
+```
+cp custom-configs/supervisord.conf.sample custom-configs/supervisord.conf
+vim custom-configs/supervisord.conf
+./stop.sh
+./boot.sh
+
+```
+
 The blockchain used by NIS is saved in the nem directory, so this data is persisted across restarts of the container.
 
 # The "nem" directory

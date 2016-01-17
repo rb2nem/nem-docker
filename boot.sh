@@ -1,18 +1,37 @@
 #!/usr/bin/env bash
 set -eu
 
-#if [[ "$*" =~ nis || $# == 0 ]]; then
-# we run the setup even if only ncc is run as the Dockerfile requires the
-# nis config file to be present
+if [[ "$*" =~ nis || $# == 0 ]]; then
+# we run the setup only if ncc is run
   ./setup.sh
-#fi
+fi
 
 # we rebuild and remove existing container every time. 
 # The benefits: upgrades are automatic after the git pull
 docker build --rm=false -t mynem_image  .
 docker ps -a | grep mynem_container > /dev/null && docker rm mynem_container
-docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem -t -d  -p 7890:7890 -p 8989:8989 mynem_image
 
+
+# determine which custom configs to mount
+
+config_mounts=""
+# nis.config-user.properties.sample  servant.config.properties.sample  supervisord.conf.sample
+# - nis
+config_file=$PWD/custom-configs/nis.config-user.properties 
+[[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/package/nis/config-user.properties"
+
+# - servant
+config_file=$PWD/custom-configs/servant.config.properties 
+[[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/servant/config.properties"
+
+# - supervisord
+config_file=$PWD/custom-configs/supervisord.conf
+[[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/etc/supervisord.conf"
+
+
+set -x
+docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem $config_mounts -t -d  -p 7777:7777 -p 7880:7880-p 7890:7890 -p 8989:8989 mynem_image
+set +x
 
 
 if [[ "$*" =~ nis || $# == 0 ]]; then

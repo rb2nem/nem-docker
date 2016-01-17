@@ -15,10 +15,14 @@ RUN unzip servant.zip
 
 
 RUN mkdir -p /root/nem
-COPY ./container_scripts/supervisord.conf /etc/
+# the sample is used as default config in the container
+COPY ./custom-configs/supervisord.conf.sample /etc/supervisord.conf
+# wallet
+EXPOSE 7777
+# NIS
 EXPOSE 7890
+# servant
+EXPOSE 7880
+# NCC
 EXPOSE 8989
 CMD ["/usr/bin/supervisord"]
-# copying the user config file last for screencast speedup
-COPY ./config-user.properties /package/nis/
-COPY ./servant.config.properties /servant/config.properties

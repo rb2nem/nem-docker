@@ -1,3 +1,4 @@
-config-user.properties
-servant.config.properties
+custom-configs/config-user.properties
+custom-configs/servant.config.properties
+custom-configs/supervisord.conf
 nem
