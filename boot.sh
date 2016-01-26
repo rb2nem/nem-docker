@@ -14,6 +14,7 @@ docker ps -a | grep mynem_container > /dev/null && docker rm mynem_container
 
 # determine which custom configs to mount
 
+set -x
 config_mounts=""
 # nis.config-user.properties.sample  servant.config.properties.sample  supervisord.conf.sample
 # - nis
@@ -29,8 +30,7 @@ config_file=$PWD/custom-configs/supervisord.conf
 [[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/etc/supervisord.conf"
 
 
-set -x
-docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem $config_mounts -t -d  -p 7777:7777 -p 7880:7880-p 7890:7890 -p 8989:8989 mynem_image
+docker run --restart always --name mynem_container -v ${PWD}/nem:/root/nem $config_mounts -t -d  -p 7777:7777 -p 7880:7880 -p 7890:7890 -p 8989:8989 mynem_image
 set +x
 
 
