@@ -21,6 +21,10 @@ config_mounts=""
 config_file=$PWD/custom-configs/nis.config-user.properties 
 [[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/package/nis/config-user.properties"
 
+# - ncc
+config_file=$PWD/custom-configs/ncc.config-user.properties 
+[[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/package/ncc/config-user.properties"
+
 # - servant
 config_file=$PWD/custom-configs/servant.config.properties 
 [[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/servant/config.properties"
