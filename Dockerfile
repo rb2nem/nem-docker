@@ -9,6 +9,7 @@ RUN gpg --verify nis-ncc-0.6.73.tgz.sig nis-ncc-0.6.73.tgz && tar zxf nis-ncc-0.
 RUN useradd nem
 RUN mkdir -p /home/nem/nem/ncc/
 RUN mkdir -p /home/nem/nem/nis/
+RUN chown nem /home/nem/nem -R
 COPY ./container_scripts/supervisord.conf /etc/
 EXPOSE 7890
 EXPOSE 8989
