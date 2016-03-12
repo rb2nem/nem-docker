@@ -6,9 +6,9 @@ RUN curl http://bob.nem.ninja/nis-ncc-0.6.73.tgz > nis-ncc-0.6.73.tgz
 RUN curl http://bob.nem.ninja/nis-ncc-0.6.73.tgz.sig > nis-ncc-0.6.73.tgz.sig
 RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
 RUN gpg --verify nis-ncc-0.6.73.tgz.sig nis-ncc-0.6.73.tgz && tar zxf nis-ncc-0.6.73.tgz
-RUN mkdir -p /root/nem
-RUN mkdir -p /root/nem/ncc/
-RUN mkdir -p /root/nem/nis/
+RUN useradd nem
+RUN mkdir -p /home/nem/nem/ncc/
+RUN mkdir -p /home/nem/nem/nis/
 COPY ./container_scripts/supervisord.conf /etc/
 EXPOSE 7890
 EXPOSE 8989
