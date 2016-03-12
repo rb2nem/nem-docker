@@ -4,29 +4,32 @@ logfile=/var/log/supervisor/supervisord.log
 loglevel=debug
 
 [program:nis]
+user=nem
 autostart=false
 directory=/package/nis
 command=java -Xms512M -Xmx1G -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter
-stderr_logfile=/root/nem/nis/stderr.log
+stderr_logfile=/home/nem/nem/nis/stderr.log
 stderr_logfile_maxbytes=5MB
 stderr_logfile_backups=10
-stdout_logfile=/root/nem/nis/stdout.log
+stdout_logfile=/home/nem/nem/nis/stdout.log
 stdout_logfile_maxbytes=5MB
 stdout_logfile_backups=10
 
 
 [program:ncc]
+user=nem
 autostart=false
 directory=/package/ncc
 command=java -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter
-stderr_logfile=/root/nem/ncc/stderr.log
+stderr_logfile=/home/nem/nem/ncc/stderr.log
 stderr_logfile_maxbytes=5MB
 stderr_logfile_backups=10
-stdout_logfile=/root/nem/ncc/stdout.log
+stdout_logfile=/home/nem/nem/ncc/stdout.log
 stdout_logfile_maxbytes=5MB
 stdout_logfile_backups=10
 
 [program:servant]
+user=nem
 autostart=false
 stopsignal=KILL
 startretries=0
