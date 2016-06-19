@@ -2,7 +2,7 @@
 FROM fedora:22
 MAINTAINER rb2
 RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux gnupg.x86_64 supervisor procps unzip
-RUN dnf upgrade nss
+RUN dnf -y upgrade nss
 
 # NEM software
 RUN curl http://bob.nem.ninja/nis-ncc-0.6.77.tgz > nis-ncc-0.6.77.tgz
