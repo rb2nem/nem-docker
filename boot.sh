@@ -34,6 +34,11 @@ config_file=$PWD/custom-configs/supervisord.conf
 [[ -f $config_file ]] && config_mounts="$config_mounts -v $config_file:/etc/supervisord.conf"
 
 
+mkdir -p /home/nem/nem/ncc
+mkdir -p /home/nem/nem/nis
+chown -R 1000 nem
+
+
 docker run --restart always --name mynem_container -v ${PWD}/nem:/home/nem/nem $config_mounts -t -d  -p 7777:7777 -p 7778:7778 -p 7880:7880 -p 7890:7890 -p 8989:8989 mynem_image
 set +x
 

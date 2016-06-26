@@ -14,9 +14,8 @@ RUN gpg --verify nis-ncc-0.6.77.tgz.sig nis-ncc-0.6.77.tgz && tar zxf nis-ncc-0.
 RUN curl -L https://github.com/rb2nem/nem-servant/raw/master/servant.zip > servant.zip
 RUN unzip servant.zip
 
-RUN useradd nem
-RUN mkdir -p /home/nem/nem/ncc
-RUN mkdir -p /home/nem/nem/nis
+RUN useradd --uid 1000 nem
+
 # the sample is used as default config in the container
 COPY ./custom-configs/supervisord.conf.sample /etc/supervisord.conf
 # wallet
