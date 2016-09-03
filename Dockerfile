@@ -5,10 +5,10 @@ RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux gnupg.x86_64 supe
 RUN dnf -y upgrade nss
 
 # NEM software
-RUN curl http://bob.nem.ninja/nis-ncc-0.6.77.tgz > nis-ncc-0.6.77.tgz
-RUN curl http://bob.nem.ninja/nis-ncc-0.6.77.tgz.sig > nis-ncc-0.6.77.tgz.sig
+RUN curl http://bob.nem.ninja/nis-ncc-0.6.79.tgz > nis-ncc-0.6.79.tgz
+RUN curl http://bob.nem.ninja/nis-ncc-0.6.79.tgz.sig > nis-ncc-0.6.79.tgz.sig
 RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
-RUN gpg --verify nis-ncc-0.6.77.tgz.sig nis-ncc-0.6.77.tgz && tar zxf nis-ncc-0.6.77.tgz
+RUN gpg --verify nis-ncc-0.6.79.tgz.sig nis-ncc-0.6.79.tgz && tar zxf nis-ncc-0.6.79.tgz
 
 # servant
 RUN curl -L https://github.com/rb2nem/nem-servant/raw/master/servant.zip > servant.zip
