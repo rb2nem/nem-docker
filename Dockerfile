@@ -1,20 +1,23 @@
 # This is a comment
-FROM fedora:22
+FROM fedora:25
 MAINTAINER rb2
-RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux gnupg.x86_64 supervisor procps unzip
+RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux gnupg.x86_64 supervisor procps jq
 RUN dnf -y upgrade nss
 
 # NEM software
 RUN curl http://bob.nem.ninja/nis-ncc-0.6.83.tgz > nis-ncc-0.6.83.tgz
-RUN curl http://bob.nem.ninja/nis-ncc-0.6.83.tgz.sig > nis-ncc-0.6.83.tgz.sig
-RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
-RUN gpg --verify nis-ncc-0.6.83.tgz.sig nis-ncc-0.6.83.tgz && tar zxf nis-ncc-0.6.83.tgz
+RUN sha=$(curl -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -s  http://bob.nem.ninja/nis-ncc-0.6.83.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:]') && \
+    echo "$sha nis-ncc-0.6.83.tgz"  > /tmp/sum && \
+    sha256sum -c /tmp/sum
+RUN useradd --uid 1000 nem
+RUN mkdir -p /home/nem/nem/ncc/
+RUN mkdir -p /home/nem/nem/nis/
+RUN chown nem /home/nem/nem -R
 
 # servant
 RUN curl -L https://github.com/rb2nem/nem-servant/raw/master/servant.zip > servant.zip
 RUN unzip servant.zip
 
-RUN useradd --uid 1000 nem
 
 # the sample is used as default config in the container
 COPY ./custom-configs/supervisord.conf.sample /etc/supervisord.conf
