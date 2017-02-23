@@ -1,7 +1,7 @@
 # This is a comment
 FROM fedora:25
 MAINTAINER rb2
-RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux gnupg.x86_64 supervisor procps jq
+RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux supervisor procps jq
 RUN dnf -y upgrade nss
 
 # NEM software
