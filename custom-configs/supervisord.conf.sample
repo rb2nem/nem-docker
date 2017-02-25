@@ -8,10 +8,10 @@ user=nem
 autostart=false
 directory=/package/nis
 command=java -Xms512M -Xmx1G -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter
-stderr_logfile=/home/nem/nem/nis/stderr.log
+stderr_logfile=/home/nem/nem/nis-stderr.log
 stderr_logfile_maxbytes=5MB
 stderr_logfile_backups=10
-stdout_logfile=/home/nem/nem/nis/stdout.log
+stdout_logfile=/home/nem/nem/nis-stdout.log
 stdout_logfile_maxbytes=5MB
 stdout_logfile_backups=10
 
@@ -21,10 +21,10 @@ user=nem
 autostart=false
 directory=/package/ncc
 command=java -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter
-stderr_logfile=/home/nem/nem/ncc/stderr.log
+stderr_logfile=/home/nem/nem/ncc-stderr.log
 stderr_logfile_maxbytes=5MB
 stderr_logfile_backups=10
-stdout_logfile=/home/nem/nem/ncc/stdout.log
+stdout_logfile=/home/nem/nem/ncc-stdout.log
 stdout_logfile_maxbytes=5MB
 stdout_logfile_backups=10
 
