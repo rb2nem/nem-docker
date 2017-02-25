@@ -6,7 +6,7 @@ RUN dnf -y upgrade nss
 RUN curl http://bob.nem.ninja/nis-ncc-0.6.83.tgz > nis-ncc-0.6.83.tgz
 RUN sha=$(curl -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -s  http://bob.nem.ninja/nis-ncc-0.6.83.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:]') && \
     echo "$sha nis-ncc-0.6.83.tgz"  > /tmp/sum && \
-    sha256sum -c /tmp/sum
+    sha256sum -c /tmp/sum && tar xf nis-ncc-0.6.83.tgz
 RUN useradd nem
 RUN mkdir -p /home/nem/nem/ncc/
 RUN mkdir -p /home/nem/nem/nis/
