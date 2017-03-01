@@ -7,14 +7,14 @@ RUN dnf -y upgrade nss
 # NEM software
 RUN curl http://bob.nem.ninja/nis-ncc-0.6.84.tgz > nis-ncc-0.6.84.tgz
 
-RUN curl http://bob.nem.ninja/nis-ncc-0.6.84.tgz.sig > nis-ncc-0.6.84.tgz.sig
-RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
-RUN gpg --verify nis-ncc-0.6.84.tgz.sig nis-ncc-0.6.84.tgz
+#RUN curl http://bob.nem.ninja/nis-ncc-0.6.84.tgz.sig > nis-ncc-0.6.84.tgz.sig
+#RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
+#RUN gpg --verify nis-ncc-0.6.84.tgz.sig nis-ncc-0.6.84.tgz
 
 # New signature scheme, not always published
-#RUN sha=$(curl -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -s  http://bob.nem.ninja/nis-ncc-0.6.84.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:]') && \
-#    echo "$sha nis-ncc-0.6.84.tgz"  > /tmp/sum && \
-#    sha256sum -c /tmp/sum
+RUN sha=$(curl -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -s  http://bob.nem.ninja/nis-ncc-0.6.84.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:]') && \
+    echo "$sha nis-ncc-0.6.84.tgz"  > /tmp/sum && \
+    sha256sum -c /tmp/sum
 
 RUN tar zxf nis-ncc-0.6.84.tgz
 
