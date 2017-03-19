@@ -18,7 +18,7 @@ built the image.
 Build the image and copy the nanowallet to the host:
 
     docker build -t nanowallet .
-    docker run nanowallet tar -c -C /NanoWallet build | tar x
+    docker run --rm nanowallet tar -c -C /NanoWallet build | tar x
     echo "open file://$PWD/build/start.html in your browser"
 
 The NanoWallet is copied to the `build` directory, which you can access in your browser.
@@ -28,6 +28,7 @@ This is also automated with the script `build.sh`:
     ./build.sh
 
 giving the same results.
+The build.sh script also handles automatically updating to the latest version available on github.
 
 
 ## Accessing the wallet server from the docker container

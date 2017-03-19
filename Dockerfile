@@ -7,8 +7,8 @@ RUN npm cache clean -f && \
     npm install -g gulp-cli
 RUN git clone https://github.com/NemProject/NanoWallet.git && \
     cd NanoWallet && \
-    npm install && sed -i -e '/browserSync.init/,+7d' gulpfile.js &&\
-    gulp build-app &&\
+    npm install && sed -i -e '/browserSync.init/,+12d' gulpfile.js &&\
+    gulp &&\
     git checkout gulpfile.js
 RUN rsync -a /NanoWallet/build/ /usr/share/nginx/html
 COPY index.html /usr/share/nginx/html/
