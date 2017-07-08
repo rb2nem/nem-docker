@@ -9,10 +9,11 @@ RUN curl -L http://bob.nem.ninja/nis-ncc-0.6.91.tgz > nis-ncc-0.6.91.tgz
 #RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
 #RUN gpg --verify nis-ncc-0.6.91.tgz.sig nis-ncc-0.6.91.tgz
 
+<<<<<<< HEAD
 
 
-# new sig scheme, not used for 0.6.91 :(
-RUN sha=$(curl -L -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -L -s http://bob.nem.ninja/nis-ncc-0.6.91.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:]') && \
+# New signature scheme, not always published
+RUN sha=$(curl -L -s http://bigalice3.nem.ninja:7890/transaction/get?hash=$(curl -L -s  http://bob.nem.ninja/nis-ncc-0.6.91.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:74]') && \
     echo "$sha nis-ncc-0.6.91.tgz"  > /tmp/sum && \
     sha256sum -c /tmp/sum
 
