@@ -5,7 +5,7 @@ RUN dnf -y install java-1.8.0-openjdk-headless.x86_64 tar tmux supervisor procps
 RUN dnf -y upgrade nss
 
 # NEM software
-RUN curl http://bob.nem.ninja/nis-ncc-0.6.91.tgz > nis-ncc-0.6.91.tgz
+RUN curl -L http://bob.nem.ninja/nis-ncc-0.6.91.tgz > nis-ncc-0.6.91.tgz
 
 #RUN curl http://bob.nem.ninja/nis-ncc-0.6.91.tgz.sig > nis-ncc-0.6.91.tgz.sig
 #RUN gpg --keyserver keys.gnupg.net --recv-key A46494A9
