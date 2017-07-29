@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /NanoWallet && ( echo 'updating code' && git pull && npm install && sed -i -e '/browserSync.init/,+12d' gulpfile.js && gulp build-app && git checkout gulpfile.js ) 

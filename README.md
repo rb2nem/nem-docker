@@ -31,24 +31,13 @@ giving the same results.
 The build.sh script also handles automatically updating to the latest version available on github.
 
 
-## Accessing the wallet server from the docker container
-
-    docker build -t nanowallet .
-    docker run --rm -p 80:80 nanowallet
-
-and access [http://localhost/](http://localhost/)
-
 # Using the image from DockerHub
 
     
 ## Accessing the wallet on the host filesystem
 
-
-    docker run rb2nem/lightwallet tar -c -C /NanoWallet build | tar x
+    docker run -it --name nanobuild rb2nem/lightwallet build
+    docker cp nanobuild:/NanoWallet/build ./
+    docker rm nanobuild
     echo "open file://$PWD/build/start.html in your browser"
 
-## Accessing the wallet server from the docker container
-
-    docker run --rm -p 80:80 rb2nem/lightwallet
-
-and access [http://localhost/](http://localhost/)
