@@ -8,7 +8,8 @@ if docker ps -a | grep nanowallet_build >/dev/null ; then
 else
   docker run -d -it --name nanowallet_build nanowallet bash
 fi
-docker exec -it nanowallet_build bash -c "cd /NanoWallet && ( echo 'updating code' && git pull && npm install && sed -i -e '/browserSync.init/,+12d' gulpfile.js && gulp build-app && git checkout gulpfile.js ) "
+docker exec -it nanowallet_build bash -c "cd /NanoWallet && git checkout . && ( echo 'updating code' && git pull && npm install && sed -i -e \"s/'win64', 'osx64',//g\" -e '/\/\/ Uncomment/,/gulp.watch(j/d'  gulpfile.js && gulp && git checkout gulpfile.js ) "
+[[ -d build ]] && mv build build.$(date +%Y%m%dT%H%M%S)
 docker cp  nanowallet_build:/NanoWallet/build ./
 docker stop nanowallet_build
 echo "open file://$PWD/build/start.html in your browser"
