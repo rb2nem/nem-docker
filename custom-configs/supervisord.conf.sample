@@ -11,7 +11,7 @@ command=bash -c "chmod g+rwx /home/nem/nem && chown nem /home/nem/nem && read"
 user=nem
 autostart=false
 directory=/package/nis
-command=bash -c 'sleep 1 && exec java -Xms512M -Xmx1G -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter'
+command=bash -c 'sleep 1 && exec java -Xms6G -Xmx6G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -cp ".:./*:../libs/*" org.nem.deploy.CommonStarter'
 stderr_logfile=/home/nem/nem/nis-stderr.log
 stderr_logfile_maxbytes=5MB
 stderr_logfile_backups=10
