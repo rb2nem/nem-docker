@@ -13,7 +13,7 @@ RUN curl -L http://bob.nem.ninja/nis-0.6.100.tgz > nis-0.6.100.tgz
 
 # New signature scheme, not always published
 RUN sha=$(curl -L -s http://hugealice.nem.ninja:7890/transaction/get?hash=$(curl -L -s  http://bob.nem.ninja/nis-0.6.100.tgz.sig | grep txId | sed -e 's/txId: //') | jq -r '.transaction.message.payload[10:74]') && \
-    echo "$sha nis-0.6.97.tgz"  > /tmp/sum && \
+    echo "$sha nis-0.6.100.tgz"  > /tmp/sum && \
     sha256sum -c /tmp/sum
 
 RUN tar zxf nis-0.6.100.tgz
